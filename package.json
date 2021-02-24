@@ -1,13 +1,13 @@
 {
-  "name": "use-last-fm",
-  "description": "Stream your current playing song from last.fm as a React hook.",
-  "version": "0.6.0",
+  "name": "@aaronlcj/use-last-fm",
+  "description": "Get data from last.fm as a React hook.",
+  "version": "0.6.1-beta.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "author": "Alistair Smith <inbox@alistair.cloud>",
+  "author": "Aaron Jones <npm@aaronlcjones.com>",
   "module": "dist/use-last-fm.esm.js",
-  "repository": "git://github.com/alii/use-last-fm.git",
+  "repository": "git://github.com/aaronlcj/use-last-fm.git",
   "files": [
     "dist",
     "src"

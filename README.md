@@ -3,7 +3,7 @@
 ![CI Status](https://github.com/webmail/use-last-fm/workflows/CI/badge.svg)
 
 Stream your currently playing song through last.fm as a React hook.
-
+Forked from Alistair Smith - aliii
 # Features
 
 - 📦 **Tiny**: `use-last-fm` weighs in at **less than** 700 bytes minified and gzipped.
@@ -15,11 +15,11 @@ Stream your currently playing song through last.fm as a React hook.
 
 ##### With NPM
 
-> `npm i --save use-last-fm`
+> `npm i --save @aaronlcj/use-last-fm`
 
 ##### Or, with yarn:
 
-> `yarn add use-last-fm`
+> `yarn add @aaronlcj/use-last-fm`
 
 ## Usage
 
@@ -27,7 +27,7 @@ Stream your currently playing song through last.fm as a React hook.
 import { useLastFM } from 'use-last-fm';
 
 const CurrentlyPlaying = () => {
-  const lastFM = useLastFM('aabbccsmith', '[add api token here]');
+  const lastFM = useLastFM({method: {type: 'user', node: 'recentlyPlayed'}, param: 'aabbccsmith'}, '[add api token here]');
 
   if (lastFM.status !== 'playing') {
     return <p>Not listening to anything</p>;
@@ -41,4 +41,4 @@ const CurrentlyPlaying = () => {
 };
 ```
 
-A full example can be seen in the [examples](https://github.com/webmail/use-last-fm/tree/master/example) folder
+A full example can be seen in the [examples](https://github.com/aaronlcj/use-last-fm/tree/master/example) folder
