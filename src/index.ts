@@ -1,4 +1,4 @@
-import { TrackImage, State, LastFMResponseBody } from './types';
+import { TrackImage, LastFMResponseBody } from './types';
 import { parseSong } from './lib';
 import useSWR from 'swr';
 
@@ -9,39 +9,44 @@ import useSWR from 'swr';
  * @param interval Optional, this is the internal between each request
  * @param imageSize The size of the image
  */
-export function useLastFM(
-  method: {
-    query: {
-      type: string;
-      node: string;
-    };
-    param: string;
-  },
-  token: string,
-  interval: number = 15 * 1000,
-  imageSize: TrackImage['size'] = 'extralarge',
-): State {
-  const endpoint = `//ws.audioscrobbler.com/2.0/?method=${method.query.type}.${method.query.node}&${method.query.type}=${method.param}&api_key=${token}&format=json&limit=1`;
+export default class useLastFM {
+  private readonly token: string;
 
-  const { data: track = null, error } = useSWR<LastFMResponseBody, Error>(
-    endpoint,
-    { refreshInterval: interval },
-  );
-
-  if (error) {
-    return {
-      status: 'error',
-      song: null,
-    };
+  public constructor(token: string) {
+    this.token = token;
   }
 
-  try {
-    return parseSong(track, imageSize);
-  } catch (e) {
-    return {
-      status: 'error',
-      song: null,
-    };
+  public get(
+    method: {
+      query: {
+        type: string;
+        node: string;
+      };
+      param: string;
+    },
+    interval: number = 15 * 1000,
+    imageSize: TrackImage['size'] = 'extralarge',
+  ) {
+    const endpoint = `//ws.audioscrobbler.com/2.0/?method=${method.query.type}.${method.query.node}&${method.query.type}=${method.param}&api_key=${this.token}&format=json&limit=1`;
+
+    const { data: track = null, error } = useSWR<LastFMResponseBody, Error>(
+      endpoint,
+      { refreshInterval: interval },
+    );
+    if (error) {
+      return {
+        status: 'error',
+        song: null,
+      };
+    }
+    try {
+      return parseSong(track, imageSize);
+    } catch (e) {
+      return {
+        status: 'error',
+        song: null,
+      };
+    }
   }
 }
 

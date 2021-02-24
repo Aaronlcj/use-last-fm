@@ -1,7 +1,7 @@
 {
   "name": "@aaronlcj/use-last-fm",
   "description": "Get data from last.fm as a React hook.",
-  "version": "0.6.1-beta.1",
+  "version": "0.6.1-beta.3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "lint": "tsdx lint src",
-    "prepare": "tsdx build"
+    "publish": "tsdx build && publish --access public"
   },
   "peerDependencies": {
     "react": ">=17"
